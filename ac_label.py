@@ -80,12 +80,13 @@ def save_xml(box_name,src_xml_dir, img_name, h, w, x1, y1, x2, y2):
     xml_file.write('    </object>\n')
     xml_file.write('</annotation>')
 
+# 使用摄像头截取每帧图像
 # i = 0
 # save = True
 # cap = cv2.VideoCapture(1,cv2.CAP_DSHOW)
 # cap.set(cv2.CAP_PROP_FRAME_WIDTH, 480)
 # cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 640)
-# # cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter.fourcc("M", "J", "P", "G"))  # ?1为啥要重设
+# # cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter.fourcc("M", "J", "P", "G"))
 # t1=time.time()
 # while True:
 #     # cap.isOpened(0)
@@ -110,16 +111,19 @@ def save_xml(box_name,src_xml_dir, img_name, h, w, x1, y1, x2, y2):
 #         break
 # cap.release()
 # cv2.destroyAllWindows()
-box_name = 'Watermelon' #打标签类别名称
-file_dir = r'E:/xing/data/fruit-recognition_datasets/train/train/Watermelon'
-save_xml_dir = r'data/xlm/Watermelon'
-for name in os.listdir(file_dir):
-    print(name)
-    img_path = os.path.join(file_dir, name)
-    img = cv2.imread(img_path)
-    # img = cv2.resize(img, (570,760), interpolation=cv2.INTER_LINEAR)
-    # img = cv2.imdecode(np.fromfile(img_path), dtype=np.uint8), -1)
-    h, w = img.shape[:-1]
-    x1, y1, x2, y2 = get_coor(img)
-    img_name = name.split('.')[0]
-    save_xml(box_name,save_xml_dir, img_name, h, w, x1, y1, x2, y2)
+
+
+if __name__ == "__main__":
+  box_name = 'Watermelon' #打标签类别名称
+  file_dir = r'E:/xing/data/fruit-recognition_datasets/train/train/Watermelon'
+  save_xml_dir = r'data/xlm/Watermelon'
+  for name in os.listdir(file_dir):
+      print(name)
+      img_path = os.path.join(file_dir, name)
+      img = cv2.imread(img_path)
+      # img = cv2.resize(img, (570,760), interpolation=cv2.INTER_LINEAR)
+      # img = cv2.imdecode(np.fromfile(img_path), dtype=np.uint8), -1)
+      h, w = img.shape[:-1]
+      x1, y1, x2, y2 = get_coor(img)
+      img_name = name.split('.')[0]
+      save_xml(box_name,save_xml_dir, img_name, h, w, x1, y1, x2, y2)
