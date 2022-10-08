@@ -4,7 +4,7 @@ import cv2
 import numpy as np
 import os
 
-# 将拍摄到的图片保存在data1文件夹中
+# 将拍摄到的图片保存在data文件夹中 使用时创建一个data/images文件夹
 def func(i,nit):
   print(time.time(),"Hello Timer!",str(i))
   while os.path.exists("data/images"+str(i)+".jpg"):
@@ -115,8 +115,8 @@ def save_xml(box_name,src_xml_dir, img_name, h, w, x1, y1, x2, y2):
 
 if __name__ == "__main__":
   box_name = 'Watermelon' #打标签类别名称
-  file_dir = r'E:/xing/data/fruit-recognition_datasets/train/train/Watermelon'
-  save_xml_dir = r'data/xlm/Watermelon'
+  file_dir = r'E:/xing/data/fruit-recognition_datasets/train/train/Watermelon' # 图像文件夹
+  save_xml_dir = r'data/xlm/Watermelon'  # xml文件
   for name in os.listdir(file_dir):
       print(name)
       img_path = os.path.join(file_dir, name)
